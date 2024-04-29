@@ -20,17 +20,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '*zfn6t@3r2yz(h@ufo%!y4al@f&-nq4x7(s2@tu*ywhib2u02_'
+SECRET_KEY = '*zfn6t@3r2yz(h@ufo%!y4al@f&-nq4x7(s2@tu*ywhib2u02_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 # DEBUG = os.environ.get('DEBUG', default=False, cast=bool)
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.environ.get('DATABASE_URL')
+#     )
+# }
 
 ALLOWED_HOSTS = ["*"]
 
@@ -93,16 +93,16 @@ WSGI_APPLICATION = 'majorproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'project_allocation',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'project_allocation',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
+    }
+}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -141,7 +141,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -156,7 +156,7 @@ EMAIL_HOST_PASSWORD = 'botree123'
 EMAIL_PORT = 587
 
 LOGIN_REDIRECT_URL = 'userdashboard'
-LOGOUT_REDIRECT_URL = 'account/login'
+LOGOUT_REDIRECT_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

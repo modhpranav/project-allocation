@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: postgresdb
+    environment:
+      POSTGRES_DB: project_allocation
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5438:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - backend
+
+  web:
+    container_name: "project_allocation_web"
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/project_allocation
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - backend
+      - frontend
+
+volumes:
+  postgres_data:
+
+networks:
+  backend:
+  frontend:

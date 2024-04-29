@@ -13,7 +13,7 @@ class Task(models.Model):
     ]
 
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    name = models.CharField(blank=False, max_length=20)
+    name = models.CharField(blank=False, max_length=100)
     description = models.TextField(blank=False, max_length=200)
     deadline = models.DateField(blank=False)
     parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
